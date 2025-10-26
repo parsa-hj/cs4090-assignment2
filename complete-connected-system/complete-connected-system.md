@@ -8,7 +8,7 @@ graph TD
     E[Group Admin]
     F[Group Member]
 
-    subgraph "Student Collaboration Platform"
+    subgraph "Class Match"
         UC1((Student Registration & Profile Creation))
         UC2((Secure Login))
         UC3((Set Weekly Availability))
