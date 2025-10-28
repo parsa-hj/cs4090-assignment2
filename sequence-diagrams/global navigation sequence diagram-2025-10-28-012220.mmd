@@ -1,0 +1,28 @@
+sequenceDiagram
+        actor s as student
+        participant w as website
+        participant ws as webserver
+
+        alt Acess Profile
+            s->>w: select profile
+            w->>+ws: query for student's profile information
+            ws->>-w:return student's information
+            w->>s: show profile page
+        else Access Course  
+            s->>w: select courses
+            w->>+ws: query for courses student is enrolled in
+            ws->>-w:return list of courses
+            w->>s: show course page with list of course
+        else Access Matches
+            s->>w: select matches
+            w->>s: show matches page
+        else Access Groups
+            s->>w: select groups
+            w->>+ws: query for groups in server
+            ws->>-w:return list of groups
+            w->>s: show course groups page with list of groups
+        else Access Settings
+            s->>w: select settings
+            w->>s: show settings page
+        end
+

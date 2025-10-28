@@ -1,0 +1,16 @@
+sequenceDiagram
+        actor s as student
+        participant w as website
+        participant ws as webserver
+
+        s->>w: access dashboard
+        w->>ws: query groups student is apart
+        ws->>ws: identify active groups
+        ws->>ws: identify next meetings of each group
+        ws->>w: return list of groups with meeting info
+        alt returned data is not empty
+        w->>w: parse data
+        w->>s: return "group dashboard" page <br> with group list and metting info
+        else Exception: returned dat is empty
+        w->>s: return "group dashboard" page with no groups
+        end
