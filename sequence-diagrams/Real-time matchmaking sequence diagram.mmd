@@ -1,0 +1,16 @@
+sequenceDiagram
+        actor S as student
+        actor W as website
+        actor ME as matching engine
+        actor WS as webserver
+
+        S->>W:1:Insert Courses and filter options
+
+        loop every change of courses or filter
+            W->>ME:Relay course and filter options
+            ME->>WS:Query for students in specified course
+            WS->>ME:Return list of student from course
+            ME->>ME:Remove student's that doesn't fit filter
+            ME->>W:Return modified list of students
+            W->>S:2: Display list of matching students
+        end
