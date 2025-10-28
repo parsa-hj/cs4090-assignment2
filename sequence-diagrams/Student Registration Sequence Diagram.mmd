@@ -1,0 +1,28 @@
+sequenceDiagram
+    actor S as student
+    participant W as website
+    participant WS as webserver
+    S->>W:1: Click Sign Up
+    W->>S:2: Give Sign Up Page
+    S->>W:3: Insert Email, and Password
+    W->>+WS: Check if Email is already in server
+
+    alt Email in server
+        WS->>W: Send "Email is in server"
+        W->>S: show "There's an account that is <br>associated with this email" page
+    else Email not in server
+        WS->>S: Sent confirmation email with timer to student's email server
+        WS->>W: Notify that an email was sent
+        W->>S: 4: switch to "An email was sent  to <br> specified email account" page
+        
+        alt Student does the email confirmation
+            S->>WS:Student does the email confirmation
+            WS->>WS:Create a  new profile with the info given
+            WS->>W:send "Account has been created"
+            W->>S:5: switch to account's home page.
+        else Student does not do the email confirmation
+            WS->>-W: Send "email authencation failed"
+            W->>S: Show "Email confirmation expired" page
+        end
+    end
+    

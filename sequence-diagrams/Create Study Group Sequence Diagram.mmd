@@ -1,0 +1,15 @@
+sequenceDiagram
+        actor s as Student
+        participant w as Website
+        participant ws as WebServer
+        
+        s->>w:1: click on create study group page
+        w->>+ws: Query for list of courses student is in
+        ws->>-w:return list of course student is in
+        w->>s:2: show "create study group" page
+        s->>w:3: Choose course and insert group's title
+        w->>+ws: relay student's info
+        ws->>ws: Create new group using student's info
+        ws->>-w: notify that group has been created
+        w->>s:4: show "group has been created"
+
